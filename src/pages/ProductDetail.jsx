@@ -5,6 +5,7 @@ import { formatPrice } from "../utils/formatPrice.js";
 import ProductGrid from "../components/ProductGrid.jsx";
 import Loading from "../components/Loading.jsx";
 import styles from "./ProductDetail.module.css";
+import ReviewList from "../components/ReviewList.jsx";
 
 function ProductDetail({ addToCart }) {
   const { id } = useParams();
@@ -65,6 +66,15 @@ function ProductDetail({ addToCart }) {
           </ul>
         </div>
       </div>
+
+      <section className={styles.ratings}>
+        <h2>Recensioner ({product.reviews.length})</h2>
+        {product.reviews.map((review) => (
+          <div className={styles.ratingBox}>
+            <ReviewList rating={review.rating} comment={review.comment} date={review.date} name={review.reviewerName} />
+          </div>
+        ))}
+      </section>
 
       <section className={styles.similar}>
         <h2>Liknande produkter</h2>
