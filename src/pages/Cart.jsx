@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { formatPrice } from "../utils/formatPrice.js";
 
 function Cart({ cart, updateQuantity, removeFromCart }) {
-  const total = cart.reduce((sum, item) => sum + item.product.price, 0);
+  const total = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
   return (
     <section>
