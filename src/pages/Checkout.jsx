@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./Checkout.module.css";
 
 function Checkout({ cart, clearCart }) {
   const navigate = useNavigate();
@@ -31,31 +32,33 @@ function Checkout({ cart, clearCart }) {
       <h1 className="page-title">Kassa</h1>
       <p>Du har {cart.length} produkter i varukorgen.</p>
 
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <label className={styles.field}>
           Namn
           <input name="name" value={form.name} onChange={handleChange} />
         </label>
 
-        <label>
+        <label className={styles.field}>
           E-post
           <input name="email" value={form.email} onChange={handleChange} />
         </label>
 
-        <label>
+        <label className={styles.field}>
           Adress
           <input name="address" value={form.address} onChange={handleChange} />
         </label>
 
-        <label>
-          Postnummer
-          <input name="zip" value={form.zip} onChange={handleChange} />
-        </label>
+        <div className={styles.row}>
+          <label className={styles.field}>
+            Postnummer
+            <input name="zip" value={form.zip} onChange={handleChange} />
+          </label>
 
-        <label>
-          Ort
-          <input name="city" value={form.city} onChange={handleChange} />
-        </label>
+          <label className={styles.field}>
+            Ort
+            <input name="city" value={form.city} onChange={handleChange} />
+          </label>
+        </div>
 
         <button type="submit" className="button">
           Slutför beställning
