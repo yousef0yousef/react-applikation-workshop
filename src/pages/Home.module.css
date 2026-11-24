@@ -1,0 +1,40 @@
+.hero {
+  background: linear-gradient(135deg, #2f5d50, #3f7a68);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 56px 40px;
+  margin-bottom: 48px;
+}
+
+.heroTitle {
+  font-size: 2.5rem;
+  margin: 0 0 12px;
+}
+
+.heroText {
+  max-width: 560px;
+  margin: 0 0 24px;
+  font-size: 1.1rem;
+  opacity: 0.95;
+}
+
+.hero :global(.button) {
+  background: var(--color-accent);
+  color: var(--color-text);
+}
+
+.section {
+  margin-bottom: 48px;
+}
+
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}

@@ -1,0 +1,11 @@
+.error {
+  background: #fdecea;
+  border: 1px solid #f5c2bd;
+  color: var(--color-error);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+}
+
+.error p {
+  margin: 0;
+}

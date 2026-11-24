@@ -1,0 +1,70 @@
+.back {
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.gallery {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.mainImage {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.info p {
+  margin: 0;
+}
+
+.brand {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.rating {
+  color: var(--color-muted);
+}
+
+.price {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.stock {
+  font-weight: 600;
+}
+
+.facts {
+  margin: 16px 0 0;
+  padding-left: 20px;
+  color: var(--color-muted);
+}
+
+.similar {
+  margin-top: 64px;
+}
