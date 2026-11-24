@@ -13,6 +13,7 @@ import Checkout from "./pages/Checkout.jsx";
 import OrderConfirmation from "./pages/OrderConfirmation.jsx";
 import Blog from "./pages/Blog.jsx";
 import BlogPost from "./pages/BlogPost.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
   // Varukorgen ligger här i App så att alla sidor kan nå den via props.
@@ -99,6 +100,7 @@ function App() {
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
