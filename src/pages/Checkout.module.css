@@ -1,0 +1,43 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 480px;
+}
+
+/* Etikett ovanför fältet, ett fält per rad */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.field input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #b8b8b8;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 400;
+}
+
+/* Tydlig fokusmarkering */
+.field input:focus {
+  outline: 3px solid #2563eb;
+  outline-offset: 1px;
+  border-color: #2563eb;
+}
+
+/* Postnummer och ort bredvid varandra */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+
+/* Stapla på smala skärmar */
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
