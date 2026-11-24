@@ -15,26 +15,42 @@ function Products() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    let ignore = false;
+
     async function getData() {
       try {
-        const productData = await fetchJson("/products");
+        const endpoint = search.trim()
+          ? `/products/search?q=${encodeURIComponent(search.trim())}`
+          : "/products";
+
+        const productData = await fetchJson(endpoint);
         const categoryData = await fetchJson("/products/categories");
 
-        setProducts(productData.products);
-        setTotal(productData.total);
-        setCategories(categoryData);
+        if (!ignore) {
+          setProducts(productData.products);
+          setTotal(productData.total);
+          setCategories(categoryData);
+          setError(null);
+        }
       } catch (err) {
-        setError(err.message);
+        if (!ignore) {
+          setError(err.message);
+        }
       } finally {
-        setIsLoading(false);
+        if (!ignore) {
+          setIsLoading(false);
+        }
       }
     }
 
     getData();
-  }, []);
+
+    return () => {
+      ignore = true;
+    };
+  }, [search]);
 
   if (isLoading) return <Loading />;
-  if (error) return <ErrorMessage message={error} />;
 
   return (
     <section>
@@ -48,6 +64,7 @@ function Products() {
           onChange={(e) => setSearch(e.target.value)}
           className={styles.search}
         />
+
         <p className={styles.count}>
           Visar {products.length} av {total} produkter
         </p>
@@ -57,7 +74,13 @@ function Products() {
         <CategoryList categories={categories} />
       </div>
 
-      <ProductGrid products={products} />
+      {error ? (
+        <ErrorMessage message={error} />
+      ) : products.length === 0 ? (
+        <p>Inga produkter matchar din sökning.</p>
+      ) : (
+        <ProductGrid products={products} />
+      )}
     </section>
   );
 }
