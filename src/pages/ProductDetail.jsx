@@ -4,30 +4,44 @@ import { fetchJson } from "../api.js";
 import { formatPrice } from "../utils/formatPrice.js";
 import ProductGrid from "../components/ProductGrid.jsx";
 import Loading from "../components/Loading.jsx";
+import ErrorMessage from "../components/ErrorMessage.jsx";
 import styles from "./ProductDetail.module.css";
 
 function ProductDetail({ addToCart }) {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [similar, setSimilar] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getProduct() {
-      const data = await fetchJson(`/products/${id}`);
-      setProduct(data);
+      setIsLoading(true);
+      setError(null);
 
-      // Hämta några andra produkter i samma kategori
-      const similarData = await fetchJson(
-        `/products/category/${data.category}?limit=5`
-      );
-      const others = similarData.products.filter((p) => p.id !== data.id);
-      setSimilar(others.slice(0, 4));
+      try {
+        const data = await fetchJson(`/products/${id}`);
+        setProduct(data);
+
+        // Hämta några andra produkter i samma kategori
+        const similarData = await fetchJson(
+          `/products/category/${data.category}?limit=5`
+        );
+        const others = similarData.products.filter((p) => p.id !== data.id);
+        setSimilar(others.slice(0, 4));
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     getProduct();
   }, []);
 
-  if (!product) return <Loading />;
+  if (isLoading) return <Loading />;
+  if (error) return <ErrorMessage message={error} />;
+  if (!product) return <ErrorMessage message="Produkten hittades inte" />;
 
   return (
     <article>
