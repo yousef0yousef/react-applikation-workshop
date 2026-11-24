@@ -1,4 +1,7 @@
 // Formaterar ett pris för visning i appen.
 export function formatPrice(price) {
-  return price + " kr";
-}
+  return Number(price).toLocaleString("sv-SE", {
+    style: "currency",
+    currency: "SEK",
+  });
+} 
