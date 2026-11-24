@@ -25,11 +25,11 @@ function Checkout({ cart, clearCart }) {
 
     navigate("/order-confirmation");
   }
-
+  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   return (
     <section>
       <h1 className="page-title">Kassa</h1>
-      <p>Du har {cart.length} produkter i varukorgen.</p>
+      <p>Du har {cartCount} produkter i varukorgen.</p>
 
       <form onSubmit={handleSubmit}>
         <label>
